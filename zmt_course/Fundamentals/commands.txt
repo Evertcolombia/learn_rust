@@ -1,0 +1,18 @@
+build program 
+$ cargo build
+
+run program 
+$ cargo run --> it also will compile and run the program
+
+$ cargo run --bin program_name_without_extension    --> for programs that are not main name
+
+$ cargo run -q --bin program_name_without_extension --> the same but supress the build output info and only diplay the result
+
+
+build a project without produce a binary file, check if the code is fine
+$ cargo check
+
+When your project is finally ready for release, you can use
+$ cargo build --release
+to compile it with optimizations.
+
