@@ -7,13 +7,14 @@
 // * Use a variable set to either true or false
 // * Use a match expression to determine which message to display
 
-
 fn main() {
-    //let my_val: bool = false;
-    let my_val: bool = true;
+    // * Use a variable set to either true or false
+    let my_val: bool = false;
 
+    // * Use a match expression to determine which message to display
     match my_val {
         true => println!("It's true"),
-        false => println!("It's false"),
+        false => println!("It's false"),        
     }
+
 }

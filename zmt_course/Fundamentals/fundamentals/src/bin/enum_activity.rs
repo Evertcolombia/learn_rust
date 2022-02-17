@@ -12,29 +12,29 @@
 
 
 // * Use an enum with color names as variants
-enum Color {
+enum Colors {
+    Black,
+    Red,
+    Pink,
     Blue,
-    Yellow,
-    White,
-    Purple
 }
 
-// * Use a function to print the color name
-// * The function must use the enum as a parameter
-fn print_color(color: &Color) {
 
+// * The function must use the enum as a parameter
+fn color_printer(color: Colors) {
     // * Use a match expression to determine which color
     //   name to print
+
     match color {
-        Color::Blue => println!("Blue"),
-        Color::Yellow => println!("Yellow"),
-        Color::White => println!("White"),
-        Color::Purple => println!("Purple"),
+        Colors::Black => println!("The color is Black"),
+        Colors::Red => println!("The color is Red"),
+        Colors::Pink => println!("The color is Pink"),
+        Colors::Blue => println!("The color is Blue"),
     }
 }
 
 fn main() {
-    let my_color: Color = Color::Purple;
-
-    print_color(&my_color);
+    //let color = Colors::Blue;
+    // * Use a function to print the color name
+    color_printer(Colors::Black);
 }

@@ -10,14 +10,18 @@
 // * Use break to exit the loop
 
 fn main() {
-    let mut i: i32 = 1;
+    // * Use a mutable integer variable
+    let mut i = 1;
 
+    // * Use a loop statement
     loop {
+        // * Print the variable within the loop statement
         println!("{:?}", i);
         
         if i == 4 {
-            break;
+            break; // * Use break to exit the loop
         }
         i = i + 1;
     }
+
 }

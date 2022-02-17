@@ -11,80 +11,45 @@
 // * Use an if expression to determine which person's info should be printed
 // * The name and colors should be printed using a function
 
-
-enum Color {
-    Yellow,
-    Pink,
-    Red,
-    Blue,
-}
-
-// * Use a struct for a persons age, name, and favorite color
 struct Person {
+    color: String,
     age: i32,
     name: String,
-    favorite_color: Color,
 }
 
-
-// * The name and colors should be printed using a function
-fn print_name(name: &str) {
-    println!("Name: {:?}", name);
-}
-
-fn print_age(age: &i32) {
-    println!("Age: {:?}", age);
-}
-
-fn print_color(color: &Color) {
-    match color {
-        Color::Yellow => println!("Favorite color is Yellow"),
-        Color::Pink => println!("Favorite color is Pink"),
-        Color::Red => println!("Favorite color is Red"),
-        Color::Blue => println!("Favorite color is Blue"),
+impl Person {
+    fn print(&self) {
+     println!("Name: {:?}\n Favorite Color: {:?}", self.name, self.color);
     }
 }
 
 fn main() {
-
-    // * Create and store at least 3 people in a vector
     let persons = vec![
         Person {
-            age: 5,
-            name: "Thiago".to_owned(),
-            favorite_color: Color::Blue,
-        },
-        Person {
-            age: 9,
-            name: String::from("Mateo"),
-            favorite_color: Color::Red
-        },
-        Person {
-            age: 55,
-            name: String::from("Mercedes"),
-            favorite_color: Color::Pink,
-        },
-        Person {
+            color: "Blue".to_owned(),
             age: 27,
-            name: "Evert".to_owned(),
-            favorite_color: Color::Yellow,
-        }
+            name: String::from("Evert Escalante")
+        },
+        Person {
+            color: "Red".to_owned(),
+            age: 21,
+            name: String::from("Michael Ramirez")
+        },
+        Person {
+            color: "Blue sky".to_owned(),
+            age: 54,
+            name: String::from("Mercedes Escalante")
+        },
+        Person {
+            color: "Yellow".to_owned(),
+            age: 10,
+            name: String::from("Mateo Mendez")
+        },
     ];
 
-    // * Iterate through the vector using a for..in loop
     for person in persons {
-        // * Use an if expression to determine which person's info should be printed
-        if person.age <= 10 {
-            print_name(&person.name);
-            print_color(&person.favorite_color);
-            println!("\n");
-        }
-        else {
-            print_name(&person.name);
-            print_color(&person.favorite_color);
-            print_age(&person.age);
-            println!("\n");
+        if person.age > 10 {
+            person.print();
         }
     }
-
 }

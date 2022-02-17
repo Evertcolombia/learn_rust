@@ -9,19 +9,18 @@
 // * Use an if..else if..else block to determine which message to display
 // * Use the println macro to display messages to the terminal
 
-
 fn main() {
+    
     // * Use a variable set to any integer value
-    let my_num: i32 = 4;
+    let my_age: i32 = 5;
 
     // * Use an if..else if..else block to determine which message to display
-    if my_num > 5 {
+    if my_age > 5 {
         println!(">5");
-    } else if my_num < 5 {
+    } else if my_age < 5 {
         println!("<5");
     } else {
         println!("=5");
     }
-// * Use the println macro to display messages to the terminal
 
 }

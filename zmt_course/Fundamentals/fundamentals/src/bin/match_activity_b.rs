@@ -12,7 +12,7 @@
 
 fn main() {
     // * Use a variable set to any integer
-    let my_number: i32 = 3;
+    let my_number: i32 = 27;
 
     // * Use a match expression to determine which message to display
     match my_number {

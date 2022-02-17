@@ -13,16 +13,14 @@
 
 // * Use an enum for the box color
 enum Color {
-    Brown,
-    White,
-    Yellow
+    Red,
+    Yellow,
 }
 
 impl Color {
     fn print(&self) {
         match self {
-            Color::Brown => println!("Color is Brown"),
-            Color::White => println!("Color is White"),
+            Color::Red => println!("Color is Red"),
             Color::Yellow => println!("Color is Yellow"),
         }
     }
@@ -36,52 +34,48 @@ struct Dimensions {
 
 impl Dimensions {
     fn print(&self) {
-        println!("Dimensions = height: {:?}, widht: {:?}, dept: {:?}",
-            self.height, self.width, self.dept);
+        println!("Dimensions:\n Height: {:?} - Width {:?} - Dept: {:?}", 
+            self.height,
+            self.width,
+            self.dept,
+        );
     }
 }
 
 // * Use a struct to encapsulate the box characteristics
-struct Box {
-    color: Color,
+struct ShippingBox {
     dimensions: Dimensions,
-    weight: f64   
+    weight: f64,
+    color: Color,
 }
 
 
-impl Box {
+impl ShippingBox {
     // * Implement functionality on the box struct to create a new box
-    fn create(color: Color, dimensions: Dimensions, weight: f64) -> Self {
+    fn create(weight: f64, dimensions: Dimensions, color: Color) -> Self {
         Self {
-            color,
             dimensions,
-            weight
+            weight,
+            color,
         }
     }
 
     // * Implement functionality on the box struct to print the characteristics
     fn print(&self) {
-        self.color.print();
-        self.dimensions.print();
         println!("Weight: {:?}", self.weight);
+        self.dimensions.print();
+        self.color.print();
     }
 }
 
 fn main() {
 
     let dimensions = Dimensions {
-        height: 10.5,
-        width: 6.6,
-        dept: 12.0
+        height: 34.5,
+        width: 22.2,
+        dept: 22.0,
     };
 
-    let new_box = Box::create(Color::Yellow, dimensions, 15.5);
+    let new_box = ShippingBox::create(12.2, dimensions, Color::Red);    
     new_box.print();
-
-    let other_box = Box::create(
-        Color::Brown,
-        Dimensions {height: 5.6, width: 5.9, dept: 5.5},
-        4.2
-    );
-    other_box.print()
 }

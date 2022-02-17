@@ -12,47 +12,29 @@
 // * The Err variant should detail the reason why they cannot make a purchase
 
 
-
 // * Use a struct to store at least the age of a customer
 struct Customer {
-    name: Option<String>,
     age: i32,
 }
 
 // * Use a function to determine if a customer can make a restricted purchase
-fn make_purchase(customer: &Customer) -> Result<(), String> {
-    if customer.age >= 21 {
+impl Customer {
+    fn check_age(&self) -> Result<(), String> {
+        if self.age < 21 {
+            return Err("Purchase denied, muts have 21 years old".to_owned());
+        }
         Ok(())
-    } else {
-        Err("Resticted Purchase : Must be older than 21 years".to_owned())
     }
 }
-// * Return a result from the function
-// * The Err variant should detail the reason why they cannot make a purchase
 
 fn main() {
-    let customers = vec![
-        Customer {
-            name: Some("Evert Escalante".to_owned()),
-            age: 27,
-        },
-        Customer {
-            name: None,
-            age: 18,
-        },
-    ];
-    
-    for customer in customers {
-        let res = make_purchase(&customer);
 
-        match customer.name {
-            Some(name) => println!("Customer name: {:?}", name),
-            None => println!("Anonymous customer"),
-        }
+    let buyer = Customer {
+        age: 21,
+    };
 
-        match res {
-            Ok(()) => println!("Purchase Done"),
-            Err(e) => println!("error = {:?}", e),
-        }
+    match buyer.check_age() {
+        Ok(()) => println!("Purchase Done"),
+        Err(e) => println!("{:?}", e)
     }
-}    
+}

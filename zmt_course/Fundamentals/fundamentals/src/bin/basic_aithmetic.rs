@@ -8,18 +8,20 @@
 // * Use a function to display the result
 // * Use the "{:?}" token in the println macro to display the result
 
+
 // * Use a function to add two numbers together
-fn add(a: i32, b: i32) -> i32{
-    a + b
+fn add(a: i32, b: i32) -> i32  {
+    a + b // the return line does not needs the ; semicolon
 }
 
 // * Use a function to display the result
-fn print_result(a: i32, b:i32) {
+fn display_result(result: i32) {
     // * Use the "{:?}" token in the println macro to display the result
-    println!("Result: {:?}", add(a, b));
+    println!("The result is: {:?}", result); // as this function does not return we use ; semicolon
 }
+
 
 fn main() {
-    print_result(3, 5);
+    let result = add(34, 43);
+    display_result(result);
 }
-

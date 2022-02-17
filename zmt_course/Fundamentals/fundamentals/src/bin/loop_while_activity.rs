@@ -11,12 +11,15 @@
 // * Do not use break to exit the loop
 
 fn main() {
-    let mut i: i32 = 5;
+    // * Use a mutable integer variable
+    let mut i = 5;
 
-    while i > 0 {
+    // * Use a while statement
+    while i >= 1 {
+        // * Print the variable within the while loop
         println!("{:?}", i);
         i = i - 1;
     }
-
     println!("Done!");
+   
 }
