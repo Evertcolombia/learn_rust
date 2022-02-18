@@ -23,93 +23,89 @@
 //   * Must use a function that utilizes the question mark operator to do this
 
 
-
 // * Use an enum to represent all types of employees
-enum EmployeePosition {
-    Maintenance, 
+enum Position {
+    Maintenance,
     Marketing,
     Mannager,
     LineSupervisor,
-    KitchenStaff,
-    AssemblyTec
+    Kitchen,
+    Assembly,
 }
 
-impl EmployeePosition {
-    
-}
-
-enum EmployeeStatus {
-    Actived,
+// * Ensure that terminated employees cannot access the building
+//   regardless of their position
+enum ContractStatus {
+    Active,
     Terminated
 }
-
-
 
 // * Use a struct to store the employee type and whether they are
 //   still employed
 struct Employee {
-    position: EmployeePosition,
-    status: EmployeeStatus
+    position: Position,
+    status: ContractStatus,
 }
-
 
 // * Use a function that returns a Result to determine if the employee
 //   may enter the building
-fn check_employee_access(employee: &Employee) -> Result<(), String> {
+fn check_access_permission(employee: &Employee) -> Result<(), String> {
     match employee.status {
-        EmployeeStatus::Terminated => return Err("This is not an Employee".to_owned()),
-        _  => ()
+        ContractStatus::Terminated => return Err("Terminated employed can not Access".to_owned()),
+        _ => (),
     }
 
     match employee.position {
-        EmployeePosition::Maintenance => Ok(()),
-        EmployeePosition::Marketing => Ok(()),
-        EmployeePosition::Mannager => Ok(()),
+        Position::Maintenance => Ok(()),
+        Position::Mannager => Ok(()),
+        Position::Marketing => Ok(()),
         _ => Err("Access Denied".to_owned()),
     }
+    //Ok(())
 }
 
-// * Print whether the employee may access the building
 //   * Must use a function that utilizes the question mark operator to do this
-fn print_employee_access(employee: &Employee) -> Result<(), String> {
-    check_employee_access(employee)?;
+fn print_access_status(employee: &Employee) -> Result<(), String> {
+     check_access_permission(employee)?;
+    // * Print whether the employee may access the building
     println!("Allow Access");
-    Ok(())
+    Ok((),)
 }
+
 
 fn main() {
+
     let employees = vec![
         Employee {
-            position: EmployeePosition::Mannager,
-            status: EmployeeStatus::Actived
+            position: Position::Maintenance,
+            status: ContractStatus::Active      
         },
         Employee {
-            position: EmployeePosition::Marketing,
-            status: EmployeeStatus::Actived
+            position: Position::Marketing,
+            status: ContractStatus::Terminated      
         },
         Employee {
-            position: EmployeePosition::Maintenance,
-            status: EmployeeStatus::Terminated
+            position: Position::Mannager,
+            status: ContractStatus::Active      
         },
         Employee {
-            position: EmployeePosition::LineSupervisor,
-            status: EmployeeStatus::Actived
+            position: Position::LineSupervisor,
+            status: ContractStatus::Active  
         },
         Employee {
-            position: EmployeePosition::KitchenStaff,
-            status: EmployeeStatus::Actived
+            position: Position::Kitchen,
+            status: ContractStatus::Active
         },
         Employee {
-            position: EmployeePosition::AssemblyTec,
-            status: EmployeeStatus::Terminated
+            position: Position::Assembly,
+            status: ContractStatus::Terminated
         },
     ];
 
-    for empl in employees {
-        match print_employee_access(&empl) {
+    for emp in employees {        
+        match print_access_status(&emp) {
             Err(e) => println!("{:?}", e),
             _ => (),
         }
     }
-
 }

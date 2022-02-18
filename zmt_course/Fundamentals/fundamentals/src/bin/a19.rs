@@ -16,23 +16,26 @@
 use std::collections::HashMap;
 
 fn main() {
+
     let mut stock = HashMap::new();
 
-    stock.insert("Chairs".to_owned(), 5);
-    stock.insert("Beds".to_owned(), 3);
-    stock.insert("Tables".to_owned(), 2);
-    stock.insert("Couches".to_owned(), 0);
+    stock.insert("Chairs", 5);
+    stock.insert("Beds", 3);
+    stock.insert("Tables", 2);
+    stock.insert("Couches", 0);
 
     let mut total_stock = 0;
-    for (item, quantity) in stock.iter() {
+
+    // when use .iter() method key and values are borrowed automatically
+    for (name, quantity) in stock.iter() {
         total_stock = total_stock + quantity;
+        
         let stock_count = if quantity == &0 {
             "out of stock!".to_owned()
         } else {
             format!("{:?}", quantity)
         };
-        println!("Item: {:?} - stock = {:?}", item, stock_count);
+        println!("Item: {:?} - Quantity: {:?}", name, stock_count);
     }
-
-    println!("Total stock = {:?}", total_stock);
+    println!("\nTotal Stock {:?}", total_stock);
 }
